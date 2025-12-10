@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FocusLab – Tools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="Page0_Style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <h1>FocusLab</h1>
+    <nav>
+      <ul>
+        <li><a href="Page1_Main_Index.html">Home</a></li>
+        <li><a href="Page2_About_Index.html">About</a></li>
+        <li><a href="Page3_Tools_Index.html">Tools</a></li>
+        <li><a href="Page4_Resources_Index.html">Resources</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+  <h2 class="hero-title">Tools & Exercises</h2>
+  <p class="byline">By Alex &amp; Nari</p>
+
+  <section>
+    <h3>What Tools Are Available</h3>
+    <ol>
+      <li>
+        <strong>Pomodoro Focus Timer</strong> – A JavaScript-based timer where users can start a 25-minute study session. When the timer ends, the site displays a motivational message to encourage short breaks and sustainable study habits.
+      </li>
+      <li>
+        <strong>Mindful Weather &amp; Advice Widget</strong> – This feature uses two APIs: Open-Meteo for current weather and AdviceSlip for random life advice. For example, it might display:
+        <em>
+          “It's 65ºF and sunny — a great day to stay focused! Here's your advice: ‘Start where you are. Use what you have. Do what you can!’”
+        </em>
+        This combines weather updates with a motivational quote to boost mood and mindfulness while studying.
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Why Tools Matter</h3>
+    <p>
+      FocusLab includes a set of interactive study tools designed to help students move from theory into practice. Although many people understand what attention is in the abstract, it can still be difficult to apply these ideas when facing real-world pressures such as deadlines, distractions, and digital overload. Tools are therefore important because they give visitors something concrete to try, whether they have ten minutes between classes or an hour to study at home.
+    </p>
+    <p>
+      Our goal is not to enforce perfection or rigid discipline. Instead, these features encourage experimentation and reflection. By trying simple activities over time, students begin to observe how small adjustments shape their focus, energy, and motivation.
+    </p>
+  </section>
+
+  <section>
+  <h3>Pomodoro Focus Timer</h3>
+  <p>
+    The Pomodoro Timer is one of the core tools included in FocusLab. It follows a well-known method that breaks work into twenty-five minute focus periods followed by short breaks. Visitors can start the session, work with attention until the timer finishes, and then take a pause before deciding whether to begin the next cycle. This method emphasizes rhythm rather than intensity and encourages a kinder approach to productivity.
+  </p>
+  <p>
+    Students can use this timer for reading, writing, language study, or focused note-taking. Over time, repeated cycles build endurance and help people recognize when their attention naturally rises and falls.
+  </p>
+
+  <div class="timer-card">
+    <div class="timer-display" id="timer-display">25:00</div>
+
+    <div class="timer-controls">
+      <button id="timer-start">Start</button>
+      <button id="timer-pause">Pause</button>
+      <button id="timer-reset">Reset</button>
+    </div>
+  </div>
+
+  <p class="timer-message" id="timer-message">
+    Press “Start” to begin a 25-minute focus session.
+  </p>
+</section>
+
+  <section>
+  <h3>Mindful Weather &amp; Advice Widget</h3>
+  <p>
+    This widget combines two APIs—Open-Meteo, which provides real-time weather data, and AdviceSlip, which returns simple reflective messages. When visitors check the tool, they see the current weather conditions for a sample location, along with a small piece of guidance such as “Take a moment to breathe.” The intention is to introduce moments of grounding, even when academic tasks feel heavy.
+  </p>
+  <p>
+    Instead of overwhelming students with data, the widget offers just enough contextual awareness to shift attention and encourage self-awareness. While weather information may seem unrelated to studying, it reminds students that their bodies, environments, and habits influence their ability to focus.
+  </p>
+
+  <div class="widget-card">
+    <button id="weather-refresh">Get Weather &amp; Advice</button>
+
+    <div class="widget-output" id="weather-output">
+      Click the button to see a brief weather update and a piece of advice.
+    </div>
+  </div>
+</section>
+
+
+  <section>
+    <h3>What Visitors Can Do With These Tools</h3>
+    <p>
+      Students are encouraged to use the tools in whatever way suits them best. For example, someone might start the Pomodoro Timer before reviewing lecture notes. Another might open the Advice widget and reflect before planning their tasks for the day. Rather than prescribing one correct way of working, FocusLab supports autonomy: students can explore, observe, and adapt.
+    </p>
+    <p>
+      The tools are intentionally simple so that visitors feel comfortable using them repeatedly. A simple timer or encouraging prompt can become a daily touchpoint that interrupts cycles of avoidance, helps reset attention, or signals a brief pause when work begins to feel overwhelming.
+    </p>
+  </section>
+
+  <section>
+    <h3>A Space for Growth</h3>
+    <p>
+      FocusLab treats personal productivity not as a competition but as a process of learning. The tools page serves as a practical space where visitors can test strategies, make adjustments, and build a more compassionate approach to studying. Our hope is that these resources become small supports that help students navigate stress, improve concentration, and develop a sustainable relationship with learning.
+    </p>
+  </section>
+    <footer>
+    <p>FocusLab</p>
+    <p>&copy; 2025. Designed &amp; built by Alex &amp; Nari.</p>
+  </footer>
+
+  <script>
+    const POMODORO_DURATION = 25 * 60;
+
+    let remainingSeconds = POMODORO_DURATION;
+    let timerInterval = null;
+
+    const displayEl = document.getElementById("timer-display");
+    const messageEl = document.getElementById("timer-message");
+    const startBtn = document.getElementById("timer-start");
+    const pauseBtn = document.getElementById("timer-pause");
+    const resetBtn = document.getElementById("timer-reset");
+
+    function updateDisplay() {
+      const minutes = Math.floor(remainingSeconds / 60);
+      const seconds = remainingSeconds % 60;
+
+      const m = String(minutes).padStart(2, "0");
+      const s = String(seconds).padStart(2, "0");
+
+      displayEl.textContent = `${m}:${s}`;
+    }
+
+    function startTimer() {
+      if (timerInterval !== null) return; 
+
+      messageEl.textContent = "Focus time is running. You’ve got this.";
+      timerInterval = setInterval(() => {
+        remainingSeconds--;
+
+        if (remainingSeconds <= 0) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          remainingSeconds = 0;
+          updateDisplay();
+
+          messageEl.textContent =
+            "Time’s up! Take a short break, stretch, drink water, and notice how you feel before starting another session.";
+        } else {
+          updateDisplay();
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      if (timerInterval !== null) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        messageEl.textContent = "Paused. You can resume when you’re ready.";
+      }
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      remainingSeconds = POMODORO_DURATION;
+      updateDisplay();
+      messageEl.textContent = "Press “Start” to begin a 25-minute focus session.";
+    }
+
+    startBtn.addEventListener("click", startTimer);
+    pauseBtn.addEventListener("click", pauseTimer);
+    resetBtn.addEventListener("click", resetTimer);
+
+    updateDisplay();
+        // =========================
+    // Mindful Weather & Advice Widget
+    // =========================
+
+    const weatherOutput = document.getElementById("weather-output");
+    const weatherBtn = document.getElementById("weather-refresh");
+
+    async function fetchWeatherAndAdvice() {
+      weatherOutput.textContent = "Loading weather and advice...";
+
+      try {
+        const latitude = 40.7128;
+        const longitude = -74.0060;
+
+        const weatherRes = await fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`
+        );
+        const weatherData = await weatherRes.json();
+
+        const tempC = weatherData.current_weather.temperature;
+        const tempF = Math.round((tempC * 9) / 5 + 32);
+
+        const description = "a good moment to pause and focus";
+
+        const adviceRes = await fetch("https://api.adviceslip.com/advice");
+        const adviceData = await adviceRes.json();
+        const advice = adviceData.slip.advice;
+
+        weatherOutput.innerHTML = `
+          It is currently <strong>${tempF}&deg;F</strong> (${tempC}&deg;C) in New York City — ${description}.<br>
+          Here's your advice: <em>"${advice}"</em>
+        `;
+      } catch (error) {
+        console.error(error);
+        weatherOutput.textContent =
+          "Sorry, something went wrong while loading weather or advice. Please try again in a moment.";
+      }
+    }
+
+    if (weatherBtn) {
+      weatherBtn.addEventListener("click", fetchWeatherAndAdvice);
+    }
+
+  </script>
+</body>
+</html>

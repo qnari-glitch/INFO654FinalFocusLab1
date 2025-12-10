@@ -1,0 +1,225 @@
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 18px;
+  margin: 0;
+  line-height: 1.7;
+  background-color: #111;
+  color: #f2f2f2;
+}
+
+
+header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #333;
+  background-color: #000;
+  display: flex;                 
+  justify-content: space-between;
+  align-items: center;           
+}
+
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+
+nav a {
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: #cfcfcf;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+nav a:hover {
+  color: #000;
+  background-color: #fff;
+}
+
+
+main {
+  max-width: 900px;
+  padding: 2rem 1.5rem;
+  margin: 0 auto;
+}
+
+
+h1, h2, h3 {
+  margin-top: 0;
+  color: #ffffff;
+  font-family: "DM Serif Display", serif; 
+  letter-spacing: 0.5px;
+}
+
+
+h1 {
+  font-size: 60px;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-size: 38px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 26px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+
+.byline {
+  font-size:18px;
+  color: #bbbbbb;
+  margin-bottom: 1rem;
+  text-align: right;
+}
+
+
+section {
+  margin-bottom: 2rem;
+}
+
+
+footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #333;
+  font-size: 14px;
+  color: #999999;
+  background-color: #000;
+}
+
+.timer-card {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background-color: #181818;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.timer-display {
+  font-family: "DM Serif Display", serif;
+  font-size: 32px;
+  letter-spacing: 2px;
+}
+
+.timer-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.timer-controls button {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  border: 1px solid #444;
+  background-color: #222;
+  color: #f2f2f2;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.timer-controls button:hover {
+  background-color: #ffffff;
+  color: #000000;
+  transform: translateY(-1px);
+}
+
+.timer-message {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #bbbbbb;
+  font-style: italic;
+}
+
+
+.widget-card {
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background-color: #181818;
+}
+
+.widget-card button {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  border: 1px solid #444;
+  background-color: #222;
+  color: #f2f2f2;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.widget-card button:hover {
+  background-color: #ffffff;
+  color: #000000;
+  transform: translateY(-1px);
+}
+
+.widget-output {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  color: #dddddd;
+  line-height: 1.6;
+}
+
+.resource-card {
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid #333;
+  border-radius: 10px;
+  background-color: #181818;
+}
+
+.resource-card h4 {
+  margin: 0 0 0.4rem 0;
+  color: #fff;
+  font-family: "DM Serif Display", serif;
+}
+
+.resource-card p {
+  margin: 0 0 0.8rem 0;
+  font-size: 0.85rem;
+  color: #cccccc;
+}
+
+.resource-btn {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  background-color: #222;
+  color: #f2f2f2;
+  text-decoration: none;
+  border-radius: 999px;
+  border: 1px solid #444;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.resource-btn:hover {
+  background-color: #fff;
+  color: #000;
+  transform: translateY(-1px);
+}
+
+
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
